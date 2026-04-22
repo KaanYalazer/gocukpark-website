@@ -1,3 +1,6 @@
+"use client";
+import { motion } from "framer-motion";
+
 const services = [
   {
     icon: "healing",
@@ -61,20 +64,26 @@ export default function ServicesGrid({ showIntro = true, id = "hizmetler" }: Pro
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {services.map((s) => (
-            <article
+            <motion.article
               key={s.title}
-              className="group relative overflow-hidden bg-gradient-to-br from-surface-container to-surface-container-low rounded-xl p-8 md:p-10 border-t border-l border-outline-variant/40 border-b border-r border-transparent flex flex-col gap-6 hover:border-surface-tint/30 transition-colors duration-500"
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="group relative overflow-hidden bg-linear-to-br from-surface-container to-surface-container-low rounded-xl p-8 md:p-10 border border-outline-variant/20 flex flex-col gap-6 hover:border-surface-tint/30 transition-colors duration-500"
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-surface-tint/5 rounded-full blur-3xl group-hover:bg-surface-tint/10 transition-colors duration-500" />
 
-              <div className="relative w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant/30 text-surface-tint">
+              <motion.div
+                whileHover={{ scale: 1.12, rotate: 6 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="relative w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center border border-outline-variant/30 text-surface-tint"
+              >
                 <span
                   className="material-symbols-outlined"
                   style={{ fontSize: 24 }}
                 >
                   {s.icon}
                 </span>
-              </div>
+              </motion.div>
 
               <div className="relative">
                 <h3 className="text-headline-md text-primary mb-3">
@@ -102,7 +111,7 @@ export default function ServicesGrid({ showIntro = true, id = "hizmetler" }: Pro
                   arrow_forward
                 </span>
               </a>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>

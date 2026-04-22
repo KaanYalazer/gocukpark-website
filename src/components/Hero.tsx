@@ -1,3 +1,16 @@
+"use client";
+import { motion } from "framer-motion";
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" as const } },
+};
+
 export default function Hero() {
   return (
     <section className="relative flex-1 flex items-center px-page overflow-hidden">
@@ -14,34 +27,42 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 container-max grid grid-cols-1 md:grid-cols-12 gap-gutter py-12 md:py-16">
-        <div className="md:col-span-9 lg:col-span-8 flex flex-col items-start gap-6 md:gap-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-surface-container border-t border-l border-outline-variant rounded-full text-label-caps text-on-surface">
+        <motion.div
+          className="md:col-span-9 lg:col-span-8 flex flex-col items-start gap-6 md:gap-8"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div
+            variants={item}
+            className="inline-flex items-center gap-2 px-3 py-1 bg-surface-container border-t border-l border-outline-variant rounded-full text-label-caps text-on-surface"
+          >
             <span className="w-2 h-2 rounded-full bg-surface-tint shadow-[0_0_8px_rgba(193,199,207,0.6)]" />
             TİTİZ RESTORASYON
-          </div>
+          </motion.div>
 
-          <h1 className="text-headline-xl text-primary max-w-3xl">
+          <motion.h1 variants={item} className="text-headline-xl text-primary max-w-3xl">
             Kusursuz Hassasiyet.
             <br />
             <span className="text-surface-tint">Görünmez Onarım.</span>
-          </h1>
+          </motion.h1>
 
-          <p className="text-body-lg text-on-surface-variant max-w-2xl">
+          <motion.p variants={item} className="text-body-lg text-on-surface-variant max-w-2xl">
             Lüks ve performans araçları için gelişmiş Boyasız Göçük Düzeltme
             (PDR) teknolojisi. Aracınızın orijinal fabrika boyasını koruyarak,
             dolgu ve boyaya ihtiyaç duymadan klinik hassasiyetle değerini
             koruruz.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-wrap gap-4 pt-2 md:pt-4">
+          <motion.div variants={item} className="flex flex-wrap gap-4 pt-2 md:pt-4">
             <a
               href="tel:+905326590075"
               className="bg-surface-tint text-on-primary-fixed text-body-sm font-semibold px-8 py-4 rounded hover:shadow-[0_0_15px_rgba(193,199,207,0.3)] transition-all"
             >
               Ücretsiz Ekspertiz Al
             </a>
-            <a
-              href="#surec"
+            <button
+              onClick={() => document.getElementById("surec")?.scrollIntoView({ behavior: "smooth" })}
               className="bg-transparent border border-outline text-on-surface text-body-sm font-semibold px-8 py-4 rounded hover:border-surface-tint hover:text-surface-tint transition-colors flex items-center gap-2"
             >
               Sürecimizi İnceleyin
@@ -51,9 +72,9 @@ export default function Hero() {
               >
                 arrow_forward
               </span>
-            </a>
-          </div>
-        </div>
+            </button>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

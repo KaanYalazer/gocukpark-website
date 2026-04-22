@@ -63,8 +63,13 @@
 
 @layer base {
   html {
+    scroll-behavior: smooth;
     background: var(--color-background);
     color: var(--color-on-background);
+    color-scheme: dark;
+  }
+  html[data-theme="light"] {
+    color-scheme: light;
   }
   body {
     font-family: var(--font-sans);
@@ -74,11 +79,65 @@
   }
   ::selection {
     background: var(--color-surface-tint);
-    color: var(--color-background);
+    color: var(--color-on-primary);
   }
 }
 
+[data-theme="light"] {
+  --color-surface: #f0f4ff;
+  --color-surface-dim: #e8edf8;
+  --color-surface-bright: #ffffff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f0f4ff;
+  --color-surface-container: #e8edf8;
+  --color-surface-container-high: #dde3f0;
+  --color-surface-container-highest: #d2d8ea;
+  --color-on-surface: #0f1629;
+  --color-on-surface-variant: #4a5568;
+  --color-inverse-surface: #0f1629;
+  --color-inverse-on-surface: #e8edf8;
+  --color-outline: #6b7280;
+  --color-outline-variant: #cbd5e1;
+  --color-surface-tint: #334155;
+  --color-surface-variant: #dde3f0;
+
+  --color-primary: #0f1629;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #1e293b;
+  --color-on-primary-container: #94a3b8;
+  --color-inverse-primary: #dce1fb;
+
+  --color-secondary: #334155;
+  --color-on-secondary: #f0f4ff;
+  --color-secondary-container: #dde3f0;
+  --color-on-secondary-container: #334155;
+
+  --color-tertiary: #1e293b;
+  --color-on-tertiary: #f0f4ff;
+  --color-tertiary-container: #e2e8f0;
+  --color-on-tertiary-container: #475569;
+
+  --color-error: #dc2626;
+  --color-on-error: #ffffff;
+  --color-error-container: #fee2e2;
+  --color-on-error-container: #7f1d1d;
+
+  --color-background: #f8faff;
+  --color-on-background: #0f1629;
+
+  --color-on-primary-fixed: #0f1629;
+  --color-on-primary-fixed-variant: #334155;
+}
+
 @layer utilities {
+  @keyframes spin-once {
+    from { transform: rotate(-90deg) scale(0.6); opacity: 0; }
+    to   { transform: rotate(0deg)   scale(1);   opacity: 1; }
+  }
+  .animate-spin-once {
+    animation: spin-once 0.25s ease-out both;
+  }
+
   .metallic-edge {
     box-shadow:
       inset 0 1px 0 0 rgba(255, 255, 255, 0.1),

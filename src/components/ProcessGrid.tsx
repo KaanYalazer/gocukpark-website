@@ -1,3 +1,6 @@
+"use client";
+import { motion } from "framer-motion";
+
 const steps = [
   {
     icon: "search",
@@ -36,22 +39,28 @@ export default function ProcessGrid() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {steps.map((step) => (
-            <div
+            <motion.div
               key={step.title}
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
               className="bg-surface-container rounded-xl p-6 md:p-8 metallic-edge flex flex-col gap-4 hover:bg-surface-container-high transition-colors border border-outline-variant/20"
             >
-              <div className="w-12 h-12 rounded bg-surface-variant flex items-center justify-center border border-outline-variant/50">
+              <motion.div
+                whileHover={{ scale: 1.12 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="w-12 h-12 rounded bg-surface-variant flex items-center justify-center border border-outline-variant/50"
+              >
                 <span className="material-symbols-outlined text-surface-tint">
                   {step.icon}
                 </span>
-              </div>
+              </motion.div>
               <h3 className="text-body-lg font-semibold text-primary">
                 {step.title}
               </h3>
               <p className="text-body-sm text-on-surface-variant">
                 {step.text}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

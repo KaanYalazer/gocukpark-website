@@ -6,6 +6,7 @@ import ProcessGrid from "@/components/ProcessGrid";
 import ServicesGrid from "@/components/ServicesGrid";
 import GalleryHighlight from "@/components/GalleryHighlight";
 import Footer from "@/components/Footer";
+import FadeIn from "@/components/FadeIn";
 
 export default function Home() {
   return (
@@ -16,10 +17,18 @@ export default function Home() {
           <Hero />
           <StatsGrid />
         </div>
-        <PremiumHighlight />
-        <ProcessGrid />
-        <GalleryHighlight />
-        <ServicesGrid />
+        <FadeIn>
+          <PremiumHighlight />
+        </FadeIn>
+        <FadeIn delay={0.05}>
+          <ProcessGrid />
+        </FadeIn>
+        <FadeIn delay={0.05}>
+          <GalleryHighlight />
+        </FadeIn>
+        <FadeIn delay={0.05}>
+          <ServicesGrid />
+        </FadeIn>
       </main>
       <Footer />
     </>
